@@ -332,56 +332,41 @@ def display_webapp():
 
         st.markdown("***")
 
-        sma_on = st.toggle('Show SMA', value = True)
+        initial_capital = st.number_input('Initial Capital', value = 100000)
+        st.markdown("***")
 
-        if sma_on:
-            initial_capital = st.number_input('Initial Capital', value = 100000)
+        SMA1 = st.number_input("SMA1", value=40)
+        st.markdown("***")
 
-            st.markdown("***")
-
-            SMA1 = st.number_input("SMA1", value=40)
-
-            st.markdown("***")
-
-            SMA2 = st.number_input("SMA2", value=252)
-
-            st.markdown("***")
-
-        else:
-            None
+        SMA2 = st.number_input("SMA2", value=252)
+        st.markdown("***")
 
     #1. Gets aggregate data
     agg_data = get_aggregates(stock, start_date, end_date)
 
     #Strategy 1 - Simple Moving Average Strategy
-    if sma_on:
-        #A. Get sma_data signals
-        sma_signals = get_sma_signals(agg_data, SMA1, SMA2)
-        sma_signals_wide = melt_data(sma_signals, "SMA1", "SMA2", "SMA", "closing_price")
+    #A. Get sma_data signals
+    sma_signals = get_sma_signals(agg_data, SMA1, SMA2)
+    sma_signals_wide = melt_data(sma_signals, "SMA1", "SMA2", "SMA", "closing_price")
 
-        #B. Generates Trading signals for the SMA strategy
-        trading_signals, position = generate_sma_trading_signals(sma_signals)
+    #B. Generates Trading signals for the SMA strategy
+    trading_signals, position = generate_sma_trading_signals(sma_signals)
 
-        #C. Get return data
-        return_data = get_return_data(agg_data, position, initial_capital)
+    #C. Get return data
+    return_data = get_return_data(agg_data, position, initial_capital)
 
     #3. Display Chart
     agg_chart = create_agg_chart(agg_data, comp_name)
     volume_chart = create_volume_chart(agg_data)
     return_chart = create_return_chart(return_data)
 
-    if sma_on:
-        sma_chart = create_sma_chart(sma_signals_wide, trading_signals)
-        combined_chart = agg_chart + sma_chart
-        final_chart = alt.vconcat(combined_chart, volume_chart, return_chart)
-        st.altair_chart(final_chart, use_container_width=True)
+    sma_chart = create_sma_chart(sma_signals_wide, trading_signals)
+    combined_chart = agg_chart + sma_chart
+    final_chart = alt.vconcat(combined_chart, volume_chart, return_chart)
+    st.altair_chart(final_chart, use_container_width=True)
 
-        st.write("Buy/Sell Signals")
-        st.dataframe(trading_signals, use_container_width=True)
-
-    else:
-        final_chart = alt.vconcat(agg_chart, volume_chart, return_chart)
-        st.altair_chart(final_chart, use_container_width=True)
+    st.write("Buy/Sell Signals")
+    st.dataframe(trading_signals, use_container_width=True)
 
     return None
 
