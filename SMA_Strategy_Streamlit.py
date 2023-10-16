@@ -10,7 +10,7 @@ import streamlit as st
 import numpy as np
 import math
 
-key = "G5O2ZIhaZExN4D04fphejimYOduuPfoK"
+key = st.secrets["key"]
 POLYGON_TICKER_DETAILS_V3 = 'https://api.polygon.io/v3/reference/tickers/{}?apiKey={}'
 
 def get_aggregates(stock, st_date, en_date):
