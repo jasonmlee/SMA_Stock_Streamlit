@@ -226,7 +226,7 @@ def create_sma_chart(signal_data, trading_signals):
     #Chart 2 - Displays the SMA data
     c2 = alt.Chart(signal_data).mark_line(opacity= 0.6).encode(
         x=alt.X('yearmonthdate(date):T', axis=alt.Axis(format="%Y %b", tickCount= alt.TimeIntervalStep("month", 1))),
-        y=alt.Y('closing_price:Q', title = 'closing price'),
+        y=alt.Y('closing_price:Q', title = 'price'),
         color= alt.Color('SMA:N', scale=alt.Scale(
             domain=['SMA1', 'SMA2'],
             range=['#F29745', '#687169']
@@ -235,7 +235,7 @@ def create_sma_chart(signal_data, trading_signals):
     #Chart 3.
     c3 = alt.Chart(trading_signals).mark_circle(size = 150).encode(
         x=alt.X('yearmonthdate(date):T', axis=alt.Axis(format="%Y %b", tickCount= alt.TimeIntervalStep("month", 1))),
-        y=alt.Y('closing_price:Q', title = 'closing price'),
+        y=alt.Y('closing_price:Q', title = 'price'),
         color= alt.Color('trading signal:N', scale=alt.Scale(
             domain=['buy_price', 'sell_price'],
             range =['#2F9421', '#C6866E']
