@@ -52,7 +52,6 @@ def get_aggregates(stock, st_date, en_date):
     return AggData
 
 def get_ref_data(stock):
-
     """
     Makes Polygon.io API call to retreive reference data
     """
@@ -109,7 +108,7 @@ def melt_data(data, var1, var2, variable_name, value_name):
 
 def generate_sma_trading_signals(data):
     """
-
+    Generates trading signals for the sma strategy
     """
 
     buy_price = []
@@ -163,6 +162,7 @@ def generate_sma_trading_signals(data):
 
 def get_return_data(agg_data, position, initial_capital):
     """
+    Calculates the strategy return data
     """
 
     portfolio = pd.DataFrame(index = position.index).fillna(0.0)
@@ -184,7 +184,7 @@ def get_return_data(agg_data, position, initial_capital):
 
 def create_agg_chart(agg_data, comp_name):
     """
-    Uses Altair to display the final data
+    Uses Altair to visualise the stock chart
     """
 
     #Chart Title
@@ -323,29 +323,26 @@ def display_webapp():
         except:
             None
 
-        st.markdown("***")
+        st.divider()
 
         #Date Options
         date_option_list = ['5Y','1D', '5D', '1M', '6M', 'YTD', '1Y']
         date_option = st.selectbox("select date", date_option_list, index=0)
         start_date, end_date = date_logic(date_option)
 
-        st.markdown("***")
+        st.divider()
 
-        sma_on = st.toggle('Show SMA', value = True)
+        initial_capital = st.number_input('Initial Capital', value = 100000)
 
-        if sma_on:
-            initial_capital = st.number_input('Initial Capital', value = 100000)
+        st.divider()
 
-            st.markdown("***")
+        SMA1 = st.number_input("SMA1", value=40)
 
-            SMA1 = st.number_input("SMA1", value=40)
+        st.divider()
 
-            st.markdown("***")
+        SMA2 = st.number_input("SMA2", value=252)
 
-            SMA2 = st.number_input("SMA2", value=252)
-
-            st.markdown("***")
+        st.divider()
 
         else:
             None
