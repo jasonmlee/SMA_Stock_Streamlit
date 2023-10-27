@@ -307,16 +307,7 @@ def display_webapp():
     with st.sidebar:
         #Ticker Options
         stock = st.text_input('Stock Ticker', 'AAPL')
-        try:
-            comp_name, market_cap, description, homepage_url, icon = get_ref_data(stock)
-        except:
-            comp_name = get_ref_data(stock)
-        st.header(comp_name)
-        try:
-            with st.expander("Company Description"):
-                st.write(description)
-        except:
-            None
+
         st.text("")
 
         #Date Options
@@ -334,6 +325,17 @@ def display_webapp():
         SMA2 = st.number_input("SMA2", value=252)
         st.text("")
 
+        try:
+            comp_name, market_cap, description, homepage_url, icon = get_ref_data(stock)
+        except:
+            comp_name = get_ref_data(stock)
+        st.header(comp_name)
+        try:
+            with st.expander("Company Description"):
+                st.write(description)
+        except:
+            None
+    
     st.header("SMA Crossover Strategy")
     st.text("")
     st.text("")
