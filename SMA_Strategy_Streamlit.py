@@ -272,7 +272,6 @@ def date_logic(date_option):
     #date_option_list = ['1D', '5D', '1M', '6M', 'YTD', '1Y', '5Y']
     current_dateTime = datetime.now()
     current_month = current_dateTime.month
-
     end_date = current_dateTime.strftime("%Y-%m-%d")
 
     if date_option == "1D":
@@ -323,7 +322,7 @@ def display_webapp():
         #Date Options
         #date_option_list = ['5Y','1D', '5D', '1M', '6M', 'YTD', '1Y']
         #date_option = st.selectbox("select date", date_option_list, index=0)
-        #start_date, end_date = date_logic(date_option)
+        start_date, end_date = date_logic("5Y")
         #st.text("")
 
         initial_capital = 100000
