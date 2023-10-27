@@ -329,23 +329,16 @@ def display_webapp():
         date_option_list = ['5Y','1D', '5D', '1M', '6M', 'YTD', '1Y']
         date_option = st.selectbox("select date", date_option_list, index=0)
         start_date, end_date = date_logic(date_option)
-
         st.divider()
 
         initial_capital = st.number_input('Initial Capital', value = 100000)
-
         st.divider()
 
         SMA1 = st.number_input("SMA1", value=40)
-
         st.divider()
 
         SMA2 = st.number_input("SMA2", value=252)
-
         st.divider()
-
-        else:
-            None
 
     #1. Gets aggregate data
     agg_data = get_aggregates(stock, start_date, end_date)
