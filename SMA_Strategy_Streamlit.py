@@ -248,7 +248,7 @@ def create_return_chart(return_data):
     """
     c1 = alt.Chart(return_data.reset_index()).mark_line(color = "#6EAEC6").encode(
         x=alt.X('yearmonthdate(date):T', axis=alt.Axis(format="%Y %b", tickCount= alt.TimeIntervalStep("month", 1))),
-        y=alt.Y('cum_strat_ret:Q', axis=alt.Axis(format=".0%")),
+        y=alt.Y('cum_strat_ret:Q', axis=alt.Axis(format=".0%"), title = 'return'),
         ).properties(
         width = 600,
         height=100,
@@ -256,7 +256,7 @@ def create_return_chart(return_data):
 
     c2 = alt.Chart(return_data.reset_index()).mark_line(color = "#687169").encode(
         x=alt.X('yearmonthdate(date):T', axis=alt.Axis(format="%Y %b", tickCount= alt.TimeIntervalStep("month", 1))),
-        y=alt.Y('bnh_cum_ret:Q', axis=alt.Axis(format=".0%")),
+        y=alt.Y('bnh_cum_ret:Q', axis=alt.Axis(format=".0%"), title = 'return'),
         ).properties(
         width = 600,
         height=100,
