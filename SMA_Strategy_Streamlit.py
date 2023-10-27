@@ -336,8 +336,8 @@ def display_webapp():
         st.text("")
 
     st.header("SMA Crossover Strategy")
-    st.markdown("***")
-    st.markdown("***")
+    st.text("")
+    st.text("")
     
     #1. Gets aggregate data
     agg_data = get_aggregates(stock, start_date, end_date)
