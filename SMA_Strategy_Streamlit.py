@@ -46,6 +46,7 @@ def get_aggregates(stock, st_date, en_date):
 
     AggData = pd.concat(Aggs)
     AggData = AggData.set_index("date")
+    AggData['price'] = 100 * ['price']
     AggData['daily_return'] = AggData['closing_price'].pct_change()
     AggData['cumulative_ret'] = (1 + AggData['daily_return']).cumprod() - 1
 
@@ -197,7 +198,8 @@ def create_agg_chart(agg_data, comp_name):
     agg_data = agg_data.reset_index()
     c = alt.Chart(agg_data).mark_line( color = "#6EAEC6").encode(
         x=alt.X('yearmonthdate(date):T', axis=alt.Axis(format="%Y %b", tickCount= alt.TimeIntervalStep("month", 1))),
-        y='closing_price:Q'
+        y='closing_price:Q',
+        opacity='price'
     ).properties(
     width = 600,
     height = 300,
