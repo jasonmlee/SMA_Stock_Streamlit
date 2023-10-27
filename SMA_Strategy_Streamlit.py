@@ -199,7 +199,7 @@ def create_agg_chart(agg_data, comp_name):
     c = alt.Chart(agg_data).mark_line( color = "#6EAEC6").encode(
         x=alt.X('yearmonthdate(date):T', axis=alt.Axis(format="%Y %b", tickCount= alt.TimeIntervalStep("month", 1))),
         y='closing_price:Q',
-        opacity='price'
+        shape='price'
     ).properties(
     width = 600,
     height = 300,
