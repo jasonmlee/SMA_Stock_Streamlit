@@ -321,10 +321,10 @@ def display_webapp():
         st.text("")
 
         #Date Options
-        date_option_list = ['5Y','1D', '5D', '1M', '6M', 'YTD', '1Y']
-        date_option = st.selectbox("select date", date_option_list, index=0)
-        start_date, end_date = date_logic(date_option)
-        st.text("")
+        #date_option_list = ['5Y','1D', '5D', '1M', '6M', 'YTD', '1Y']
+        #date_option = st.selectbox("select date", date_option_list, index=0)
+        #start_date, end_date = date_logic(date_option)
+        #st.text("")
 
         initial_capital = 100000
         st.text("")
