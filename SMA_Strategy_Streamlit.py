@@ -306,23 +306,18 @@ def date_logic(date_option):
 def display_webapp():
 
     with st.sidebar:
-
         #Ticker Options
         stock = st.text_input('Stock Ticker', 'AAPL')
-
         try:
             comp_name, market_cap, description, homepage_url, icon = get_ref_data(stock)
         except:
             comp_name = get_ref_data(stock)
-
         st.header(comp_name)
-
         try:
             with st.expander("Company Description"):
                 st.write(description)
         except:
             None
-
         st.divider()
 
         #Date Options
@@ -340,6 +335,8 @@ def display_webapp():
         SMA2 = st.number_input("SMA2", value=252)
         st.divider()
 
+    st.header("SMA Crossover Strategy")
+    
     #1. Gets aggregate data
     agg_data = get_aggregates(stock, start_date, end_date)
 
