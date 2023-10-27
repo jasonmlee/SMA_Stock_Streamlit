@@ -318,26 +318,26 @@ def display_webapp():
                 st.write(description)
         except:
             None
-        st.divider()
+        st.text("")
 
         #Date Options
         date_option_list = ['5Y','1D', '5D', '1M', '6M', 'YTD', '1Y']
         date_option = st.selectbox("select date", date_option_list, index=0)
         start_date, end_date = date_logic(date_option)
-        st.divider()
+        st.text("")
 
-        initial_capital = st.number_input('Initial Capital', value = 100000)
-        st.divider()
+        initial_capital = 100000
+        st.text("")
 
         SMA1 = st.number_input("SMA1", value=40)
-        st.divider()
+        st.text("")
 
         SMA2 = st.number_input("SMA2", value=252)
-        st.divider()
+        st.text("")
 
     st.header("SMA Crossover Strategy")
-    st.empty()
-    st.empty()
+    st.markdown("***")
+    st.markdown("***")
     
     #1. Gets aggregate data
     agg_data = get_aggregates(stock, start_date, end_date)
