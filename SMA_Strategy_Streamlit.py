@@ -46,7 +46,7 @@ def get_aggregates(stock, st_date, en_date):
 
     AggData = pd.concat(Aggs)
     AggData = AggData.set_index("date")
-    AggData['price'] = 100 * ['price']
+    AggData['price'] = 1
     AggData['daily_return'] = AggData['closing_price'].pct_change()
     AggData['cumulative_ret'] = (1 + AggData['daily_return']).cumprod() - 1
 
